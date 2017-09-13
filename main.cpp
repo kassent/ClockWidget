@@ -52,7 +52,7 @@ bool ScaleformCallback(GFxMovieView * view, GFxValue * value)
 		if (movieRoot->GetVariable(&loaderInfo, "root.loaderInfo.url"))
 		{
 			std::string sResult = loaderInfo.GetString();
-			_MESSAGE("%s", sResult.c_str());
+			//_MESSAGE("%s", sResult.c_str());
 			if (sResult.find("LoadingMenu.swf") != std::string::npos)
 			{
 				InjectFlashFile("root.FilterHolder_mc.Menu_mc.addChild");
@@ -86,7 +86,7 @@ extern "C"
 
 		g_pluginHandle = f4se->GetPluginHandle();
 
-		if (f4se->runtimeVersion != RUNTIME_VERSION_1_10_20)
+		if (f4se->runtimeVersion < RUNTIME_VERSION_1_9_4)
 		{
 			MessageBox(nullptr, "UNSUPPORTED GAME VERSION.THE REQUIRED VERSION IS: V1.10.20", PLUGIN_NAME, MB_OK);
 			return false;

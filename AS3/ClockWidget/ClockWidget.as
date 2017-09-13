@@ -36,14 +36,17 @@
 				{
 					var Menu: MovieClip = this.parent.parent;
 					Menu.removeChild(this.parent);
-					Menu.addChild(this);
+					//Menu.addChild(this);
 					var classRef: Class = getDefinitionByName("Clock") as Class;
 					clock = new classRef();
 					clock.objectData = {"name": getTimeString()};
-					Menu.addChild(clock);
-					Menu["VaultTecLogo_mc"].x -= clock.width;
-					clock.x = Menu["VaultTecLogo_mc"].x;
-					clock.y = Menu["VaultTecLogo_mc"].y - Menu["VaultTecLogo_mc"].height / 2;
+					var logo: MovieClip = Menu["VaultTecLogo_mc"];
+					logo.addChild(this);
+					logo.addChild(clock);
+					var firstChild = logo.getChildAt(0);
+					firstChild.x -= clock.width;
+					clock.x = firstChild.x + firstChild.width / 2;
+					clock.y = firstChild.y;
 					break;
 				}
 				case FADER_MENU_URL:
